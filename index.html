@@ -1,14 +1,45 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>practica4</title>
-    <script type="module" crossorigin src="/assets/index-CyMdvSSY.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DykytF2W.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Practica 4</title>
+</head>
+<body>
+
+    <h1>Practica 4 - Calcular Edad</h1>
+
+    <label>Fecha de nacimiento:</label>
+    <input type="date" id="fechaNacimiento">
+    <br><br>
+
+    <button onclick="calcularEdad()">Calcular Edad</button>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        function calcularEdad() {
+            let fechaNacimiento = document.getElementById("fechaNacimiento").value;
+
+            if (fechaNacimiento === "") {
+                document.getElementById("resultado").innerHTML = "Por favor ingresa una fecha.";
+                return;
+            }
+
+            let hoy = new Date();
+            let nacimiento = new Date(fechaNacimiento);
+
+            let edad = hoy.getFullYear() - nacimiento.getFullYear();
+
+            let mes = hoy.getMonth() - nacimiento.getMonth();
+            let dia = hoy.getDate() - nacimiento.getDate();
+
+            if (mes < 0 || (mes === 0 && dia < 0)) {
+                edad--;
+            }
+
+            document.getElementById("resultado").innerHTML = "Tu edad es: " + edad + " años";
+        }
+    </script>
+
+</body>
 </html>
